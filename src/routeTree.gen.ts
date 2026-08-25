@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AddProductRouteImport } from './routes/add-product'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as RecordSaleRouteImport } from './routes/record-sale'
+import { Route as ReplenishmentRouteImport } from './routes/replenishment'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,86 @@ const AddProductRoute = AddProductRouteImport.update({
   path: '/add-product',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecordSaleRoute = RecordSaleRouteImport.update({
   id: '/record-sale',
   path: '/record-sale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReplenishmentRoute = ReplenishmentRouteImport.update({
+  id: '/replenishment',
+  path: '/replenishment',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/add-product': typeof AddProductRoute
+  '/dashboard': typeof DashboardRoute
+  '/inventory': typeof InventoryRoute
   '/record-sale': typeof RecordSaleRoute
+  '/replenishment': typeof ReplenishmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/add-product': typeof AddProductRoute
+  '/dashboard': typeof DashboardRoute
+  '/inventory': typeof InventoryRoute
   '/record-sale': typeof RecordSaleRoute
+  '/replenishment': typeof ReplenishmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/add-product': typeof AddProductRoute
+  '/dashboard': typeof DashboardRoute
+  '/inventory': typeof InventoryRoute
   '/record-sale': typeof RecordSaleRoute
+  '/replenishment': typeof ReplenishmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/add-product' | '/record-sale'
+  fullPaths:
+    | '/'
+    | '/add-product'
+    | '/dashboard'
+    | '/inventory'
+    | '/record-sale'
+    | '/replenishment'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/add-product' | '/record-sale'
-  id: '__root__' | '/' | '/add-product' | '/record-sale'
+  to:
+    | '/'
+    | '/add-product'
+    | '/dashboard'
+    | '/inventory'
+    | '/record-sale'
+    | '/replenishment'
+  id:
+    | '__root__'
+    | '/'
+    | '/add-product'
+    | '/dashboard'
+    | '/inventory'
+    | '/record-sale'
+    | '/replenishment'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AddProductRoute: typeof AddProductRoute
+  DashboardRoute: typeof DashboardRoute
+  InventoryRoute: typeof InventoryRoute
   RecordSaleRoute: typeof RecordSaleRoute
+  ReplenishmentRoute: typeof ReplenishmentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +124,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AddProductRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/record-sale': {
       id: '/record-sale'
       path: '/record-sale'
       fullPath: '/record-sale'
       preLoaderRoute: typeof RecordSaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/replenishment': {
+      id: '/replenishment'
+      path: '/replenishment'
+      fullPath: '/replenishment'
+      preLoaderRoute: typeof ReplenishmentRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +158,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AddProductRoute: AddProductRoute,
+  DashboardRoute: DashboardRoute,
+  InventoryRoute: InventoryRoute,
   RecordSaleRoute: RecordSaleRoute,
+  ReplenishmentRoute: ReplenishmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
