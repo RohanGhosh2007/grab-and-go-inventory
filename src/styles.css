@@ -142,3 +142,149 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============================================================
+   Auto Inventory — SaaS design system (dark navy / blue / violet)
+   ============================================================ */
+:root {
+  --radius: 0.9rem;
+  --background: oklch(0.17 0.035 265);
+  --foreground: oklch(0.97 0.008 260);
+  --card: oklch(0.225 0.036 265);
+  --card-foreground: oklch(0.97 0.008 260);
+  --popover: oklch(0.225 0.036 265);
+  --popover-foreground: oklch(0.97 0.008 260);
+  --primary: oklch(0.62 0.2 268);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.28 0.04 265);
+  --secondary-foreground: oklch(0.97 0.008 260);
+  --muted: oklch(0.27 0.035 265);
+  --muted-foreground: oklch(0.72 0.03 262);
+  --accent: oklch(0.62 0.19 235);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.62 0.2 268);
+  --success: oklch(0.72 0.17 158);
+  --success-foreground: oklch(0.16 0.03 265);
+  --warning: oklch(0.79 0.16 78);
+  --warning-foreground: oklch(0.16 0.03 265);
+  --chart-1: oklch(0.62 0.2 268);
+  --chart-2: oklch(0.72 0.17 190);
+  --chart-3: oklch(0.79 0.16 78);
+  --chart-4: oklch(0.7 0.19 330);
+  --chart-5: oklch(0.72 0.17 158);
+  --gradient-hero: radial-gradient(
+      1200px 600px at 15% -10%,
+      oklch(0.62 0.2 268 / 0.35),
+      transparent 60%
+    ),
+    radial-gradient(900px 500px at 90% 0%, oklch(0.62 0.19 235 / 0.28), transparent 60%);
+  --gradient-brand: linear-gradient(135deg, oklch(0.62 0.2 268), oklch(0.66 0.18 225));
+  --shadow-premium: 0 24px 60px -24px oklch(0.1 0.04 265 / 0.85);
+  --shadow-glow: 0 0 0 1px oklch(1 0 0 / 8%), 0 20px 45px -20px oklch(0.62 0.2 268 / 0.65);
+}
+
+@theme inline {
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@utility glass-card {
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-premium);
+}
+
+@utility surface-gradient {
+  background-image: var(--gradient-hero);
+}
+
+@utility brand-gradient {
+  background-image: var(--gradient-brand);
+}
+
+@keyframes ai-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ai-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ai-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes ai-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes ai-shimmer {
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@utility animate-fade-up {
+  animation: ai-fade-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-slide-in {
+  animation: ai-slide-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-pop {
+  animation: ai-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-float {
+  animation: ai-float 6s ease-in-out infinite;
+}
+@utility skeleton {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--muted) 80%, transparent) 0%,
+    color-mix(in oklab, var(--muted) 45%, transparent) 50%,
+    color-mix(in oklab, var(--muted) 80%, transparent) 100%
+  );
+  background-size: 200% 100%;
+  animation: ai-shimmer 1.4s linear infinite;
+  border-radius: var(--radius-md);
+}

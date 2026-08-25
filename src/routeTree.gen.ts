@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AddProductRouteImport } from './routes/add-product'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ForecastRouteImport } from './routes/forecast'
+import { Route as InventoryRouteImport } from './routes/inventory'
+import { Route as RecordSaleRouteImport } from './routes/record-sale'
+import { Route as ReplenishmentRouteImport } from './routes/replenishment'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AddProductRoute = AddProductRouteImport.update({
+  id: '/add-product',
+  path: '/add-product',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForecastRoute = ForecastRouteImport.update({
+  id: '/forecast',
+  path: '/forecast',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventoryRoute = InventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecordSaleRoute = RecordSaleRouteImport.update({
+  id: '/record-sale',
+  path: '/record-sale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReplenishmentRoute = ReplenishmentRouteImport.update({
+  id: '/replenishment',
+  path: '/replenishment',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/add-product': typeof AddProductRoute
+  '/dashboard': typeof DashboardRoute
+  '/forecast': typeof ForecastRoute
+  '/inventory': typeof InventoryRoute
+  '/record-sale': typeof RecordSaleRoute
+  '/replenishment': typeof ReplenishmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/add-product': typeof AddProductRoute
+  '/dashboard': typeof DashboardRoute
+  '/forecast': typeof ForecastRoute
+  '/inventory': typeof InventoryRoute
+  '/record-sale': typeof RecordSaleRoute
+  '/replenishment': typeof ReplenishmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/add-product': typeof AddProductRoute
+  '/dashboard': typeof DashboardRoute
+  '/forecast': typeof ForecastRoute
+  '/inventory': typeof InventoryRoute
+  '/record-sale': typeof RecordSaleRoute
+  '/replenishment': typeof ReplenishmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/add-product'
+    | '/dashboard'
+    | '/forecast'
+    | '/inventory'
+    | '/record-sale'
+    | '/replenishment'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/add-product'
+    | '/dashboard'
+    | '/forecast'
+    | '/inventory'
+    | '/record-sale'
+    | '/replenishment'
+  id:
+    | '__root__'
+    | '/'
+    | '/add-product'
+    | '/dashboard'
+    | '/forecast'
+    | '/inventory'
+    | '/record-sale'
+    | '/replenishment'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AddProductRoute: typeof AddProductRoute
+  DashboardRoute: typeof DashboardRoute
+  ForecastRoute: typeof ForecastRoute
+  InventoryRoute: typeof InventoryRoute
+  RecordSaleRoute: typeof RecordSaleRoute
+  ReplenishmentRoute: typeof ReplenishmentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/add-product': {
+      id: '/add-product'
+      path: '/add-product'
+      fullPath: '/add-product'
+      preLoaderRoute: typeof AddProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forecast': {
+      id: '/forecast'
+      path: '/forecast'
+      fullPath: '/forecast'
+      preLoaderRoute: typeof ForecastRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventory': {
+      id: '/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof InventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/record-sale': {
+      id: '/record-sale'
+      path: '/record-sale'
+      fullPath: '/record-sale'
+      preLoaderRoute: typeof RecordSaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/replenishment': {
+      id: '/replenishment'
+      path: '/replenishment'
+      fullPath: '/replenishment'
+      preLoaderRoute: typeof ReplenishmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AddProductRoute: AddProductRoute,
+  DashboardRoute: DashboardRoute,
+  ForecastRoute: ForecastRoute,
+  InventoryRoute: InventoryRoute,
+  RecordSaleRoute: RecordSaleRoute,
+  ReplenishmentRoute: ReplenishmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
