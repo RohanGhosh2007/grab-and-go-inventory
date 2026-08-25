@@ -64,7 +64,7 @@ function ForecastPage() {
         for (let i = 1; i <= 7; i++) {
           const date = new Date(today);
           date.setDate(today.getDate() + i);
-          forecastLabels.push(date.toISOString().split("T")[0]);
+          forecastLabels.push(date.toISOString().slice(0, 10));
         }
 
         const allLabels = [...labels, ...forecastLabels];
