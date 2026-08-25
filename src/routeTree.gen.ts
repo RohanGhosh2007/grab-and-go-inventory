@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AddProductRouteImport } from './routes/add-product'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ForecastRouteImport } from './routes/forecast'
 import { Route as InventoryRouteImport } from './routes/inventory'
 import { Route as RecordSaleRouteImport } from './routes/record-sale'
 import { Route as ReplenishmentRouteImport } from './routes/replenishment'
@@ -29,6 +30,11 @@ const AddProductRoute = AddProductRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForecastRoute = ForecastRouteImport.update({
+  id: '/forecast',
+  path: '/forecast',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InventoryRoute = InventoryRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/add-product': typeof AddProductRoute
   '/dashboard': typeof DashboardRoute
+  '/forecast': typeof ForecastRoute
   '/inventory': typeof InventoryRoute
   '/record-sale': typeof RecordSaleRoute
   '/replenishment': typeof ReplenishmentRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/add-product': typeof AddProductRoute
   '/dashboard': typeof DashboardRoute
+  '/forecast': typeof ForecastRoute
   '/inventory': typeof InventoryRoute
   '/record-sale': typeof RecordSaleRoute
   '/replenishment': typeof ReplenishmentRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/add-product': typeof AddProductRoute
   '/dashboard': typeof DashboardRoute
+  '/forecast': typeof ForecastRoute
   '/inventory': typeof InventoryRoute
   '/record-sale': typeof RecordSaleRoute
   '/replenishment': typeof ReplenishmentRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/add-product'
     | '/dashboard'
+    | '/forecast'
     | '/inventory'
     | '/record-sale'
     | '/replenishment'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/add-product'
     | '/dashboard'
+    | '/forecast'
     | '/inventory'
     | '/record-sale'
     | '/replenishment'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/add-product'
     | '/dashboard'
+    | '/forecast'
     | '/inventory'
     | '/record-sale'
     | '/replenishment'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AddProductRoute: typeof AddProductRoute
   DashboardRoute: typeof DashboardRoute
+  ForecastRoute: typeof ForecastRoute
   InventoryRoute: typeof InventoryRoute
   RecordSaleRoute: typeof RecordSaleRoute
   ReplenishmentRoute: typeof ReplenishmentRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forecast': {
+      id: '/forecast'
+      path: '/forecast'
+      fullPath: '/forecast'
+      preLoaderRoute: typeof ForecastRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inventory': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AddProductRoute: AddProductRoute,
   DashboardRoute: DashboardRoute,
+  ForecastRoute: ForecastRoute,
   InventoryRoute: InventoryRoute,
   RecordSaleRoute: RecordSaleRoute,
   ReplenishmentRoute: ReplenishmentRoute,
